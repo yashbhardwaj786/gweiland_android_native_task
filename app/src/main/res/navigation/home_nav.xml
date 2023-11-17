@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/exchangeFragment">
+
+    <fragment
+        android:id="@+id/eShopFragment"
+        android:name="com.yashgweiland.nativeandroidtask.ui.EShopFragment"
+        tools:layout="@layout/fragment_e_shop" />
+    <fragment
+        android:id="@+id/exchangeFragment"
+        android:name="com.yashgweiland.nativeandroidtask.ui.ExchangeFragment"
+        tools:layout="@layout/fragment_exchange" />
+    <fragment
+        android:id="@+id/launchpadsFragment"
+        android:name="com.yashgweiland.nativeandroidtask.ui.LaunchPadFragment"
+        tools:layout="@layout/fragment_launch_pad" />
+    <fragment
+        android:id="@+id/walletFragment"
+        android:name="com.yashgweiland.nativeandroidtask.ui.WalletFragment"
+        tools:layout="@layout/fragment_wallet" />
+</navigation>

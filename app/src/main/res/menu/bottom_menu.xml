@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/eShopFragment"
+        android:icon="@drawable/eshops"
+        android:title="€-$hop"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/exchangeFragment"
+        android:icon="@drawable/exchange"
+        android:title="Exchange"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:enabled="true"
+        android:title=""
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/launchpadsFragment"
+        android:icon="@drawable/launchpads"
+        android:title="Launchpads"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/walletFragment"
+        android:icon="@drawable/wallet"
+        android:title="wallets"
+        app:showAsAction="ifRoom"/>
+</menu>

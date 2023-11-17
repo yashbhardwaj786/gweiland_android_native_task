@@ -17,6 +17,7 @@ object Versions {
     const val koin = "3.4.3"
     const val retrofit = "2.9.0"
     const val okhttp = "4.2.0"
+    const val nav_version = "2.7.5"
 }
 
 object Dependencies {
@@ -44,6 +45,11 @@ object Dependencies {
         const val logging_interceptor =
             "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
         const val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+    }
+
+    object Navigation {
+        const val fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
+        const val ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
     }
 
     object Koin {

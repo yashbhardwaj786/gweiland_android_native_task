@@ -62,6 +62,8 @@ dependencies {
     implementation(Dependencies.constraintlayout)
     implementation(Dependencies.appcompat)
     implementation(Dependencies.material_design)
+    implementation(Dependencies.Navigation.fragment_ktx)
+    implementation(Dependencies.Navigation.ui_ktx)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.espresso_core)
