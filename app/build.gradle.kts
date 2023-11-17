@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.yashgweiland.nativeandroidtask"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.yashgweiland.nativeandroidtask"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -35,7 +35,24 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    dexOptions {
+        incremental = true
+        preDexLibraries = false
+        javaMaxHeapSize = "4g"
+    }
     dataBinding.enable = true
+    flavorDimensions.add("tier")
+    productFlavors {
+        create("prod")  {
+            applicationId = "com.yashgweiland.nativeandroidtask"
+            minSdk  = 24
+            targetSdk  = 34
+            this.resValue("string", "app_name", providers.gradleProperty("app_name").get())
+            this.buildConfigField("String","baseUrl", providers.gradleProperty("base_url").get())
+            this.buildConfigField("String","apiKey", providers.gradleProperty("api_key").get())
+            dimension = "tier"
+        }
+    }
 }
 
 dependencies {
