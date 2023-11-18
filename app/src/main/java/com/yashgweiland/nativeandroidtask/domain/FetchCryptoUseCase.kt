@@ -6,15 +6,15 @@ import com.yashgweiland.nativeandroidtask.data.ResultData
 import com.yashgweiland.nativeandroidtask.data.repository.MainRepository
 import timber.log.Timber
 
-class FetchJokeUseCase(
+class FetchCryptoUseCase(
     private val mainRepository: MainRepository,
 ) {
     suspend fun getLatestCryptoListing( limit: Int, sort: String, sortBy: String): Result<ResultData> {
-        var joke: ResultData? = null
+        var resultData: ResultData? = null
         var exception: Exception? = null
         when (val result = mainRepository.getLatestCryptoListing(limit, sort, sortBy)) {
             is Result.Success -> {
-                joke = result.data
+                resultData = result.data
             }
             is Result.Error -> {
                 exception = result.exception
@@ -24,8 +24,8 @@ class FetchJokeUseCase(
                 Timber.d("Something went wrong")
             }
         }
-        return if(joke != null){
-            Result.Success(joke)
+        return if(resultData != null){
+            Result.Success(resultData)
         }else {
             exception?.let { ex ->
                 Result.Error(ex)
@@ -36,11 +36,11 @@ class FetchJokeUseCase(
     }
 
     suspend fun getCryptoInfo( slug: String): Result<CryptoInfoResponse> {
-        var joke: CryptoInfoResponse? = null
+        var cryptoInfoResponse: CryptoInfoResponse? = null
         var exception: Exception? = null
         when (val result = mainRepository.getCryptoInfo(slug)) {
             is Result.Success -> {
-                joke = result.data
+                cryptoInfoResponse = result.data
             }
             is Result.Error -> {
                 exception = result.exception
@@ -50,8 +50,8 @@ class FetchJokeUseCase(
                 Timber.d("Something went wrong")
             }
         }
-        return if(joke != null){
-            Result.Success(joke)
+        return if(cryptoInfoResponse != null){
+            Result.Success(cryptoInfoResponse)
         }else {
             exception?.let { ex ->
                 Result.Error(ex)

@@ -1,10 +1,10 @@
 package com.yashgweiland.nativeandroidtask.di
 
-import com.yashgweiland.nativeandroidtask.domain.FetchJokeUseCase
+import com.yashgweiland.nativeandroidtask.domain.FetchCryptoUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
     single {
-        FetchJokeUseCase(get())
+        FetchCryptoUseCase(get())
     }
 }

@@ -65,15 +65,13 @@ class ExchangeFragment : BaseFragment() {
 
         when(data.identifier){
             MainViewModel.VIEW_ALL_CLICK -> {
-                if (cryptoListFull.isNotEmpty()){
-                    isViewAllClick = true
-                    initRecyclerView(cryptoListFull)
-                    binding.isShowPadding = true
-                }
+                binding.viewAll.visibility = View.GONE
+                showAllData()
             }
             MainViewModel.ON_LISTING_DATA_FETCH -> {
                 val response = data.arguments[0] as ResultData
                 binding.progressAnimationView.visibility = View.GONE
+                binding.viewAll.visibility = View.VISIBLE
                 response.data?.let {
                     if(it.isNotEmpty()){
                         cryptoListFull.clear()
@@ -128,6 +126,11 @@ class ExchangeFragment : BaseFragment() {
                 Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
             }
 
+            MainViewModel.ON_FAILURE_INFO -> {
+                val errorMessage = data.arguments[0] as String
+                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+            }
+
             MainViewModel.FILTER_OPTION_CLICK -> {
                 val options = data.arguments[0] as FilterOptions
                 val pos = data.arguments[1] as Int
@@ -149,24 +152,23 @@ class ExchangeFragment : BaseFragment() {
 
             ON_INFO_DATA_FETCH -> {
                 val response = data.arguments[0] as CryptoInfoResponse
-                println(response.data!!::class.java.typeName)
-                var daata: LinkedTreeMap<*, *> = LinkedTreeMap<String, String>()
-                var daata1: LinkedTreeMap<*, *> = LinkedTreeMap<String, String>()
+                var outerHashMap: LinkedTreeMap<*, *> = LinkedTreeMap<String, String>()
+                var innerHashMap: LinkedTreeMap<*, *> = LinkedTreeMap<String, String>()
                 try {
-                    daata = response.data as LinkedTreeMap<*, *>
+                    outerHashMap = response.data as LinkedTreeMap<*, *>
 
                 }catch (ex: Exception){
                     println(ex.printStackTrace())
                 }
 
 
-                daata.forEach{ (key, value) ->
-                    daata1 = value as LinkedTreeMap<*, *>
-                    daata1.forEach { (key1, value1) ->
-                        var id = daata1["id"] as Double
-                        var name = daata1["name"] as String
-                        var symbol = daata1["symbol"] as String
-                        var logo = daata1["logo"] as String
+                outerHashMap.forEach{ (key, value) ->
+                    innerHashMap = value as LinkedTreeMap<*, *>
+                    innerHashMap.forEach { (key1, value1) ->
+                        val id = innerHashMap["id"] as Double
+                        val name = innerHashMap["name"] as String
+                        val symbol = innerHashMap["symbol"] as String
+                        val logo = innerHashMap["logo"] as String
                         val myData = MyData(id, name, symbol, logo)
                         myDataArrList[id.toInt()] = myData
                         initRecyclerView(partialList)
@@ -212,15 +214,17 @@ class ExchangeFragment : BaseFragment() {
                 val queryString = binding.searchView.text?.toString()?.trim() ?: ""
                 val tempList = if (isViewAllClick) cryptoListFull else partialList
                 if (queryString.length > 2) {
+                    binding.viewAll.visibility = View.GONE
                     searchList.clear()
                     val list = tempList.filter { it.name!!.contains(queryString, ignoreCase = true)
                             || it.symbol!!.contains(queryString, ignoreCase = true) }
                     searchList = ArrayList(list)
                     binding.isShowPadding = false
                     initRecyclerView(searchList)
-                } else {
+                } else if (queryString.isEmpty()) {
+                    binding.viewAll.visibility = View.VISIBLE
                     searchList.clear()
-                    initRecyclerView(tempList)
+                    showAllData()
                 }
             }
         })
@@ -294,6 +298,14 @@ class ExchangeFragment : BaseFragment() {
             layoutManager = mLayoutManager
             adapter =
                 FilterOptionsDataAdapter(mainViewModel, filterList)
+        }
+    }
+
+    private fun showAllData(){
+        if (cryptoListFull.isNotEmpty()){
+            isViewAllClick = true
+            initRecyclerView(cryptoListFull)
+            binding.isShowPadding = true
         }
     }
 

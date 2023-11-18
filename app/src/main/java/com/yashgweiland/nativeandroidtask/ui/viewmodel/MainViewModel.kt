@@ -6,21 +6,17 @@ import androidx.lifecycle.viewModelScope
 import com.yashgweiland.nativeandroidtask.common.BaseViewModel
 import com.yashgweiland.nativeandroidtask.data.model.FilterOptions
 import com.yashgweiland.nativeandroidtask.data.model.Result
-import com.yashgweiland.nativeandroidtask.domain.FetchJokeUseCase
+import com.yashgweiland.nativeandroidtask.domain.FetchCryptoUseCase
 import com.yashgweiland.nativeandroidtask.notifiers.Notify
 import com.yashgweiland.nativeandroidtask.utils.Constant
 import com.yashgweiland.nativeandroidtask.utils.Constant.Companion.DEFAULT_SORT_BY
 import com.yashgweiland.nativeandroidtask.utils.Constant.Companion.DEFAULT_SORT_VALUE
 import com.yashgweiland.nativeandroidtask.utils.Constant.Companion.LIMIT
-import com.yashgweiland.nativeandroidtask.utils.Utility
 import com.yashgweiland.nativeandroidtask.utils.checkInternet
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.Timer
-import java.util.TimerTask
 
 class MainViewModel(
-    private val fetchJokeUseCase: FetchJokeUseCase
+    private val fetchJokeUseCase: FetchCryptoUseCase
 ): BaseViewModel() {
     var isShowView = ObservableField(false)
     fun getCryptoListApi(context: Context, limit: Int = LIMIT, sort: String = DEFAULT_SORT_VALUE, sortBy: String = DEFAULT_SORT_BY){
@@ -65,18 +61,18 @@ class MainViewModel(
                             }
                             is Result.Error -> {
                                 it.exception.printStackTrace()
-                                notifier.notify(Notify(Constant.ON_FAILURE, it.exception.localizedMessage))
+                                notifier.notify(Notify(ON_FAILURE_INFO, it.exception.localizedMessage))
                             }
                         }
                     }
                 }catch (ex: Exception) {
                     hideProgress()
                     ex.printStackTrace()
-                    notifier.notify(Notify(Constant.ON_FAILURE, ex.localizedMessage))
+                    notifier.notify(Notify(ON_FAILURE_INFO, ex.localizedMessage))
                 }
             }
         } else {
-            notifier.notify(Notify(Constant.ON_FAILURE, Constant.INTERNET_ISSUE_DESCRIPTION))
+            notifier.notify(Notify(ON_FAILURE_INFO, Constant.INTERNET_ISSUE_DESCRIPTION))
         }
     }
 
@@ -95,5 +91,6 @@ class MainViewModel(
         const val FILTER_CLICK = "FILTER_CLICK"
         const val FILTER_OPTION_CLICK = "FILTER_OPTION_CLICK"
         const val ON_INFO_DATA_FETCH = "ON_INFO_DATA_FETCH"
+        const val ON_FAILURE_INFO = "ON_FAILURE_INFO"
     }
 }
