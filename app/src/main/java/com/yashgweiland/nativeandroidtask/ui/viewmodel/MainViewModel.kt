@@ -1,6 +1,7 @@
 package com.yashgweiland.nativeandroidtask.ui.viewmodel
 
 import android.content.Context
+import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
 import com.yashgweiland.nativeandroidtask.common.BaseViewModel
 import com.yashgweiland.nativeandroidtask.data.model.FilterOptions
@@ -21,7 +22,7 @@ import java.util.TimerTask
 class MainViewModel(
     private val fetchJokeUseCase: FetchJokeUseCase
 ): BaseViewModel() {
-
+    var isShowView = ObservableField(false)
     fun getCryptoListApi(context: Context, limit: Int = LIMIT, sort: String = DEFAULT_SORT_VALUE, sortBy: String = DEFAULT_SORT_BY){
         notifier.notify(Notify(Constant.ON_STARTED, ""))
         if (checkInternet()) {

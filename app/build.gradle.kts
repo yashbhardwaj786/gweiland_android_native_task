@@ -73,4 +73,5 @@ dependencies {
     implementation (Dependencies.Retrofit.main)
     implementation (Dependencies.timber)
     implementation(Dependencies.Retrofit.gson_convertor)
+    implementation(Dependencies.lottie)
 }

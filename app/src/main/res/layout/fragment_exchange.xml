@@ -6,6 +6,8 @@
         <variable
             name="isShowPadding"
             type="Boolean" />
+
+        <import type="android.view.View"/>
         <variable
             name="priceValue"
             type="String" />
@@ -119,6 +121,7 @@
         android:layout_height="130dp"
         android:background="@drawable/rectangle_bg"
         android:layout_marginTop="@dimen/margin_10dp"
+        android:visibility="@{viewModel.isShowView ? View.VISIBLE : View.GONE}"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cryptocurrencyText"
@@ -251,12 +254,26 @@
         android:paddingBottom="@{isShowPadding ? @dimen/margin_300dp : @dimen/margin_0dp}"
         android:fitsSystemWindows="true"
         android:overScrollMode="never"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/topCryptocurrencyText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:itemCount="5"
         tools:listitem="@layout/layout_crypto_item"
         tools:visibility="visible" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressAnimationView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loader.json"
+        app:lottie_loop="true" />
 
 
 

@@ -25,6 +25,7 @@ import com.yashgweiland.nativeandroidtask.ui.adapter.FilterOptionsDataAdapter
 import com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel
 import com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel.Companion.FILTER_CLICK
 import com.yashgweiland.nativeandroidtask.utils.Constant.Companion.ON_FAILURE
+import com.yashgweiland.nativeandroidtask.utils.Constant.Companion.ON_STARTED
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ExchangeFragment : BaseFragment() {
@@ -63,6 +64,7 @@ class ExchangeFragment : BaseFragment() {
             }
             MainViewModel.ON_LISTING_DATA_FETCH -> {
                 val response = data.arguments[0] as ResultData
+                binding.progressAnimationView.visibility = View.GONE
                 response.data?.let {
                     if(it.isNotEmpty()){
                         cryptoListFull.clear()
@@ -78,6 +80,7 @@ class ExchangeFragment : BaseFragment() {
                             partialList.add(cryptoListFull[item])
                         }
                         binding.data = it[0]
+                        mainViewModel.isShowView.set(true)
                         it[0].quote?.USD?.price?.let { price->
                             binding.priceValue = String.format("%.2f", price)
                         }
@@ -92,13 +95,25 @@ class ExchangeFragment : BaseFragment() {
 
                         }
                         binding.isShowPadding = true
+                        binding.cryptoList.visibility = View.VISIBLE
                         initRecyclerView(partialList)
+                    }else {
+                        binding.cryptoList.visibility = View.GONE
                     }
                 }
             }
 
+            ON_STARTED -> {
+                binding.progressAnimationView.visibility = View.VISIBLE
+                mainViewModel.isShowView.set(false)
+                binding.cryptoList.visibility = View.GONE
+            }
+
             ON_FAILURE -> {
                 val errorMessage = data.arguments[0] as String
+                binding.progressAnimationView.visibility = View.GONE
+                mainViewModel.isShowView.set(false)
+                binding.cryptoList.visibility = View.GONE
                 Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
             }
             MainViewModel.FILTER_OPTION_CLICK -> {

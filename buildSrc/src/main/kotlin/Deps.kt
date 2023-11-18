@@ -19,6 +19,7 @@ object Versions {
     const val okhttp = "4.2.0"
     const val nav_version = "2.7.5"
     const val gson_conertor_version = "2.9.0"
+    const val lottie_version = "3.7.0"
 }
 
 object Dependencies {
@@ -39,6 +40,7 @@ object Dependencies {
     const val viewModel_runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.viewModel}"
     const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragment_ktx}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottie_version}"
 
     object Retrofit {
         const val retrofit = "io.insert-koin:koin-android:${Versions.retrofit}"
