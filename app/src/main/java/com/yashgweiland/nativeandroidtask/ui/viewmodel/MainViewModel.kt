@@ -3,7 +3,6 @@ package com.yashgweiland.nativeandroidtask.ui.viewmodel
 import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.yashgweiland.nativeandroidtask.common.BaseViewModel
-import com.yashgweiland.nativeandroidtask.data.ResultData
 import com.yashgweiland.nativeandroidtask.data.model.Result
 import com.yashgweiland.nativeandroidtask.domain.FetchJokeUseCase
 import com.yashgweiland.nativeandroidtask.notifiers.Notify

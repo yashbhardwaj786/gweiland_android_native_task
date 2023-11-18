@@ -8,11 +8,11 @@ class SharedPrefRepository(
     private val jokesPreference: JokesPreference
 ): BaseRepository() {
 
-    fun fetchJokesFromSharedPref(): ArrayList<ResultData> {
-        return jokesPreference.getSavedJokes()
-    }
-
-    fun saveJoke(data: ArrayList<ResultData>) {
-        jokesPreference.saveJoke(data)
-    }
+//    fun fetchJokesFromSharedPref(): ArrayList<ResultData> {
+//        return jokesPreference.getSavedJokes()
+//    }
+//
+//    fun saveJoke(data: ArrayList<ResultData>) {
+//        jokesPreference.saveJoke(data)
+//    }
 }

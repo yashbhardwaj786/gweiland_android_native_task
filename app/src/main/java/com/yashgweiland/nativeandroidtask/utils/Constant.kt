@@ -10,7 +10,7 @@ class Constant {
 
         const val LIMIT = 20
         const val DEFAULT_SORT_VALUE = "market_cap"
-        const val DEFAULT_SORT_BY = "DESC"
+        const val DEFAULT_SORT_BY = "desc"
     }
 
 }

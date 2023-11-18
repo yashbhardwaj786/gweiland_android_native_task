@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+//    id("com.google.devtools.ksp")
     id("kotlin-android")
 }
 
@@ -35,11 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    dexOptions {
-        incremental = true
-        preDexLibraries = false
-        javaMaxHeapSize = "4g"
-    }
+
     dataBinding.enable = true
     flavorDimensions.add("tier")
     productFlavors {
@@ -73,7 +70,10 @@ dependencies {
     implementation (Dependencies.Koin.koin)
     implementation (Dependencies.Retrofit.retrofit)
     implementation (Dependencies.Retrofit.logging_interceptor)
-    implementation (Dependencies.Retrofit.moshi)
+//    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
+//    implementation (Dependencies.Retrofit.moshi)
+//    implementation ("com.squareup.moshi:moshi-kotlin:1.15.0")
     implementation (Dependencies.Retrofit.main)
     implementation (Dependencies.timber)
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }
