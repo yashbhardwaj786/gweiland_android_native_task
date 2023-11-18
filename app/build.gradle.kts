@@ -70,10 +70,7 @@ dependencies {
     implementation (Dependencies.Koin.koin)
     implementation (Dependencies.Retrofit.retrofit)
     implementation (Dependencies.Retrofit.logging_interceptor)
-//    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
-//    implementation (Dependencies.Retrofit.moshi)
-//    implementation ("com.squareup.moshi:moshi-kotlin:1.15.0")
     implementation (Dependencies.Retrofit.main)
     implementation (Dependencies.timber)
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(Dependencies.Retrofit.gson_convertor)
 }

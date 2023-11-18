@@ -18,6 +18,7 @@ object Versions {
     const val retrofit = "2.9.0"
     const val okhttp = "4.2.0"
     const val nav_version = "2.7.5"
+    const val gson_conertor_version = "2.9.0"
 }
 
 object Dependencies {
@@ -44,7 +45,7 @@ object Dependencies {
         const val main = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
         const val logging_interceptor =
             "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
-        const val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+        const val gson_convertor = "com.squareup.retrofit2:converter-gson:${Versions.gson_conertor_version}"
     }
 
     object Navigation {

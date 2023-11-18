@@ -3,7 +3,6 @@ package com.yashgweiland.nativeandroidtask.domain
 import com.yashgweiland.nativeandroidtask.data.model.Result
 import com.yashgweiland.nativeandroidtask.data.ResultData
 import com.yashgweiland.nativeandroidtask.data.repository.MainRepository
-import com.yashgweiland.nativeandroidtask.data.repository.SharedPrefRepository
 import timber.log.Timber
 
 class FetchJokeUseCase(

@@ -4,6 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
+            name="priceValue"
+            type="String" />
+        <variable
+            name="changeValue"
+            type="String" />
+        <variable
+            name="data"
+            type="com.yashgweiland.nativeandroidtask.data.CryptoDataResponse" />
+        <variable
             name="viewModel"
             type="com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel" />
     </data>
@@ -129,7 +138,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/margin_20dp"
             android:layout_marginStart="@dimen/margin_10dp"
-            android:text="BTC"
+            tools:text="BTC"
+            android:text="@{data.symbol}"
             android:fontFamily="@font/inter_bold"
             android:textSize="@dimen/text_size_18sp"
             app:lineHeight="21sp"
@@ -143,7 +153,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_10dp"
             android:fontFamily="@font/inter_medium"
-            android:text="Bitcoin"
+            tools:text="Bitcoin"
+            android:text="@{data.name}"
             android:layout_marginTop="@dimen/margin_3dp"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -160,7 +171,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/margin_20dp"
             android:layout_marginEnd="@dimen/margin_10dp"
-            android:text="$55,000 USD"
+            tools:text="$55,000 USD"
+            android:text="@{priceValue}"
             android:fontFamily="@font/inter_bold"
             android:textSize="@dimen/text_size_16sp"
             app:lineHeight="21sp"
@@ -175,7 +187,7 @@
             app:layout_constraintTop_toBottomOf="@+id/price"
             android:layout_marginEnd="@dimen/margin_10dp"
             android:layout_marginTop="@dimen/margin_3dp"
-            android:text="+2.5%"
+            android:text="@{changeValue + `%`}"
             android:fontFamily="@font/inter_bold"
             android:textSize="@dimen/text_size_13sp"
             app:lineHeight="21sp"

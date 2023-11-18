@@ -34,12 +34,21 @@ class ExchangeFragment : BaseFragment() {
         when(data.identifier){
             MainViewModel.ON_LISTING_DATA_FETCH -> {
                 val response = data.arguments[0] as ResultData
-                println("hh yashal response is $response")
+                response?.data?.let {
+                    if(it.isNotEmpty()){
+                        binding.data = it[0]
+                        it[0].quote?.USD?.price?.let { price->
+                            binding.priceValue = String.format("%.2f", price)
+                        }
+                        it[0].quote?.USD?.percent_change_24h?.let { changes->
+                            binding.changeValue = String.format("%.2f", changes)
+                        }
+                    }
+                }
             }
 
             ON_FAILURE -> {
                 val errorMessage = data.arguments[0] as String
-                println("hh yashal response is $errorMessage")
             }
         }
 
