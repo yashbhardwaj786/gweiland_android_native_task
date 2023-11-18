@@ -6,55 +6,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yashgweiland.nativeandroidtask.R
+import com.yashgweiland.nativeandroidtask.common.BaseFragment
+import com.yashgweiland.nativeandroidtask.common.BaseViewModel
+import com.yashgweiland.nativeandroidtask.databinding.FragmentEShopBinding
+import com.yashgweiland.nativeandroidtask.databinding.FragmentExchangeBinding
+import com.yashgweiland.nativeandroidtask.notifiers.Notify
+import com.yashgweiland.nativeandroidtask.ui.activity.MainActivity
+import com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class EShopFragment: BaseFragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [EShopFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class EShopFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var mainActivity: MainActivity
+    private val mainViewModel: MainViewModel by viewModel()
+    private val binding: FragmentEShopBinding by lazyBinding()
+    override val dataBinding: Boolean = true
+    override val layoutResource: Int = R.layout.fragment_e_shop
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        mainActivity = context as MainActivity
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_e_shop, container, false)
+    override fun getViewModel(): BaseViewModel {
+        return mainViewModel
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EShopFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EShopFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onNotificationReceived(data: Notify) {
+
+    }
+
+    override fun setBindings() {
+        binding.viewModel = mainViewModel
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainActivity.setTitleBar(requireContext().resources.getString(R.string.e_shops))
     }
 }

@@ -3,6 +3,7 @@ package com.yashgweiland.nativeandroidtask.ui.activity
 import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
@@ -43,6 +44,8 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setToolBar(resources.getString(R.string.exchange))
 
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         navController = Navigation.findNavController(this, R.id.fragment)
@@ -183,5 +186,9 @@ class MainActivity : BaseActivity() {
     private fun restBackActionDone() {
         navController?.popBackStack(R.id.exchangeFragment, true)
         bottomNav?.selectedItemId = R.id.exchangeFragment
+    }
+
+    fun setTitleBar(titleValue: String){
+        setToolBar(titleValue)
     }
 }

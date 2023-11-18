@@ -2,4 +2,8 @@
     <string name="app_name">Yash_Gweiland_Native_Android_Task</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="e_shops">€-$hop</string>
+    <string name="exchange">Exchange</string>
+    <string name="launchpads">Launchpads</string>
+    <string name="wallets">Wallets</string>
 </resources>

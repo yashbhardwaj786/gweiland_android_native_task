@@ -4,13 +4,13 @@
     <item
         android:id="@+id/eShopFragment"
         android:icon="@drawable/eshops"
-        android:title="€-$hop"
+        android:title="@string/e_shops"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/exchangeFragment"
         android:icon="@drawable/exchange"
-        android:title="Exchange"
+        android:title="@string/exchange"
         app:showAsAction="ifRoom"/>
     <item
         android:enabled="true"
@@ -19,11 +19,11 @@
     <item
         android:id="@+id/launchpadsFragment"
         android:icon="@drawable/launchpads"
-        android:title="Launchpads"
+        android:title="@string/launchpads"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/walletFragment"
         android:icon="@drawable/wallet"
-        android:title="wallets"
+        android:title="@string/wallets"
         app:showAsAction="ifRoom"/>
 </menu>
