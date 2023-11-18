@@ -4,6 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
+            name="isShowPadding"
+            type="Boolean" />
+        <variable
             name="priceValue"
             type="String" />
         <variable
@@ -43,6 +46,7 @@
             />
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/searchView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -243,7 +247,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/margin_15dp"
         app:layout_constraintVertical_weight="1"
-        android:paddingBottom="300dp"
+        android:paddingBottom="@{isShowPadding ? @dimen/margin_300dp : @dimen/margin_0dp}"
         android:fitsSystemWindows="true"
         android:overScrollMode="never"
         app:layout_constraintTop_toBottomOf="@+id/topCryptocurrencyText"

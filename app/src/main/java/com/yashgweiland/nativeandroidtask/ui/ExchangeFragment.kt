@@ -1,6 +1,8 @@
 package com.yashgweiland.nativeandroidtask.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +27,10 @@ class ExchangeFragment : BaseFragment() {
     override val dataBinding: Boolean = true
     private var mLayoutManager: LinearLayoutManager? = null
     private var cryptoListFull = ArrayList<CryptoDataResponse>()
+    private var searchList = ArrayList<CryptoDataResponse>()
+    private var partialList = ArrayList<CryptoDataResponse>()
     override val layoutResource: Int = R.layout.fragment_exchange
+    private var isViewAllClick = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +45,9 @@ class ExchangeFragment : BaseFragment() {
         when(data.identifier){
             MainViewModel.VIEW_ALL_CLICK -> {
                 if (cryptoListFull.isNotEmpty()){
+                    isViewAllClick = true
                     initRecyclerView(cryptoListFull)
-                    binding.viewAll.visibility = View.INVISIBLE
+                    binding.isShowPadding = true
                 }
             }
             MainViewModel.ON_LISTING_DATA_FETCH -> {
@@ -49,8 +55,8 @@ class ExchangeFragment : BaseFragment() {
                 response.data?.let {
                     if(it.isNotEmpty()){
                         cryptoListFull = it
-                        val partialList = ArrayList<CryptoDataResponse>()
-                        var size = if(cryptoListFull.size < 8){
+                         partialList = ArrayList<CryptoDataResponse>()
+                        val size = if(cryptoListFull.size < 8){
                             cryptoListFull.size
                         }else {
                             7
@@ -72,6 +78,7 @@ class ExchangeFragment : BaseFragment() {
                             }
 
                         }
+                        binding.isShowPadding = true
                         initRecyclerView(partialList)
                     }
                 }
@@ -95,6 +102,30 @@ class ExchangeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel.getCryptoListApi(requireContext())
+
+        binding.searchView.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(cs: CharSequence, arg1: Int, arg2: Int, arg3: Int) {
+            }
+
+            override fun beforeTextChanged(arg0: CharSequence, arg1: Int, arg2: Int, arg3: Int) {
+            }
+
+            override fun afterTextChanged(arg0: Editable) {
+                val queryString = binding.searchView.text?.toString()?.trim() ?: ""
+                val tempList = if (isViewAllClick) cryptoListFull else partialList
+                if (queryString.length > 2) {
+                    searchList.clear()
+                    val list = tempList.filter { it.name!!.contains(queryString, ignoreCase = true)
+                            || it.symbol!!.contains(queryString, ignoreCase = true) }
+                    searchList = ArrayList(list)
+                    binding.isShowPadding = false
+                    initRecyclerView(searchList)
+                } else {
+                    searchList.clear()
+                    initRecyclerView(tempList)
+                }
+            }
+        })
     }
 
     private fun initRecyclerView(cryptoList: ArrayList<CryptoDataResponse>) {

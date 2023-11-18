@@ -67,7 +67,7 @@
             android:scaleType="centerCrop"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="@dimen/margin_5dp"
             android:clickable="true"
             android:focusable="true"
             app:srcCompat="@drawable/circlll" />
