@@ -1,15 +1,11 @@
 package com.yashgweiland.nativeandroidtask.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.yashgweiland.nativeandroidtask.R
 import com.yashgweiland.nativeandroidtask.common.BaseFragment
 import com.yashgweiland.nativeandroidtask.common.BaseViewModel
 import com.yashgweiland.nativeandroidtask.data.ResultData
-import com.yashgweiland.nativeandroidtask.data.model.Result
 import com.yashgweiland.nativeandroidtask.databinding.FragmentExchangeBinding
 import com.yashgweiland.nativeandroidtask.notifiers.Notify
 import com.yashgweiland.nativeandroidtask.ui.activity.MainActivity
