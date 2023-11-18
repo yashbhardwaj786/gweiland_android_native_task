@@ -33,6 +33,6 @@ The following technology used in application
 5. Sort the cryptocurrencies by cmc_rank or Marketcap by default. --> Done
    
 # Bonus Point
-1. Integrate the ‘Filter’ feature on right top (from the design). Give options to sort the cryptocurrencies by **price, volume_24h**
+1. Integrate the ‘Filter’ feature on right top (from the design). Give options to sort the cryptocurrencies by **price, volume_24h** --> Done
 
 
