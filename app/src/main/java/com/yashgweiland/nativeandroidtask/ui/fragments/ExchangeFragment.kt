@@ -1,6 +1,5 @@
-package com.yashgweiland.nativeandroidtask.ui
+package com.yashgweiland.nativeandroidtask.ui.fragments
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -13,11 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.google.gson.internal.LinkedTreeMap
-import com.google.gson.reflect.TypeToken
-import com.google.gson.stream.JsonReader
 import com.yashgweiland.nativeandroidtask.R
 import com.yashgweiland.nativeandroidtask.common.BaseFragment
 import com.yashgweiland.nativeandroidtask.common.BaseViewModel
@@ -38,9 +33,6 @@ import com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel.Companion.O
 import com.yashgweiland.nativeandroidtask.utils.Constant.Companion.ON_FAILURE
 import com.yashgweiland.nativeandroidtask.utils.Constant.Companion.ON_STARTED
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.io.StringReader
-
-
 
 
 class ExchangeFragment : BaseFragment() {

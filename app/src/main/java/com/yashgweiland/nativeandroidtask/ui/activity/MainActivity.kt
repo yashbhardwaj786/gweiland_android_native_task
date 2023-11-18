@@ -1,9 +1,7 @@
 package com.yashgweiland.nativeandroidtask.ui.activity
 
 import android.annotation.SuppressLint
-import android.graphics.Typeface
 import android.os.Bundle
-import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
@@ -15,10 +13,10 @@ import com.yashgweiland.nativeandroidtask.common.BaseActivity
 import com.yashgweiland.nativeandroidtask.common.BaseViewModel
 import com.yashgweiland.nativeandroidtask.databinding.ActivityMainBinding
 import com.yashgweiland.nativeandroidtask.notifiers.Notify
-import com.yashgweiland.nativeandroidtask.ui.EShopFragment
-import com.yashgweiland.nativeandroidtask.ui.ExchangeFragment
-import com.yashgweiland.nativeandroidtask.ui.LaunchPadFragment
-import com.yashgweiland.nativeandroidtask.ui.WalletFragment
+import com.yashgweiland.nativeandroidtask.ui.fragments.EShopFragment
+import com.yashgweiland.nativeandroidtask.ui.fragments.ExchangeFragment
+import com.yashgweiland.nativeandroidtask.ui.fragments.LaunchPadFragment
+import com.yashgweiland.nativeandroidtask.ui.fragments.WalletFragment
 import com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
