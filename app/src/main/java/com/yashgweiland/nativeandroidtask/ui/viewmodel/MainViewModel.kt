@@ -3,6 +3,7 @@ package com.yashgweiland.nativeandroidtask.ui.viewmodel
 import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.yashgweiland.nativeandroidtask.common.BaseViewModel
+import com.yashgweiland.nativeandroidtask.data.model.FilterOptions
 import com.yashgweiland.nativeandroidtask.data.model.Result
 import com.yashgweiland.nativeandroidtask.domain.FetchJokeUseCase
 import com.yashgweiland.nativeandroidtask.notifiers.Notify
@@ -53,8 +54,16 @@ class MainViewModel(
     fun onViewClick(){
         notifier.notify(Notify(VIEW_ALL_CLICK, ""))
     }
+    fun onFilterClick(){
+        notifier.notify(Notify(FILTER_CLICK, ""))
+    }
+    fun onFilterOptionClick(filterItem: FilterOptions, position: Int){
+        notifier.notify(Notify(FILTER_OPTION_CLICK, filterItem, position))
+    }
     companion object {
         const val ON_LISTING_DATA_FETCH = "ON_LISTING_DATA_FETCH"
         const val VIEW_ALL_CLICK = "VIEW_ALL_CLICK"
+        const val FILTER_CLICK = "FILTER_CLICK"
+        const val FILTER_OPTION_CLICK = "FILTER_OPTION_CLICK"
     }
 }

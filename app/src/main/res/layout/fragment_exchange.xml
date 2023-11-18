@@ -71,6 +71,7 @@
         android:paddingHorizontal="@dimen/margin_10dp"
         android:layout_marginStart="@dimen/margin_10dp"
         android:layout_marginTop="@dimen/margin_10dp"
+        android:onClick="@{()->viewModel.onFilterClick()}"
         app:layout_constraintLeft_toRightOf="@+id/searchContainer"
         >
         <androidx.appcompat.widget.AppCompatTextView
