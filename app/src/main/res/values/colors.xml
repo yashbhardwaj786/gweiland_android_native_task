@@ -11,6 +11,11 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black_0B">#0B0B0B</color>
+    <color name="black_0B_30">#4D0B0B0B</color>
+    <color name="black_0B_5">#0D0B0B0B</color>
+    <color name="white_f3">#F3F3F3</color>
+    <color name="green_10">#1A00CE08</color>
+    <color name="green">#00CE08</color>
 
     <color name="bottom_menu_selected_color">@color/white</color>
     <color name="bottom_menu_unselected_color">@color/teal_700</color>

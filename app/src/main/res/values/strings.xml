@@ -6,4 +6,8 @@
     <string name="exchange">Exchange</string>
     <string name="launchpads">Launchpads</string>
     <string name="wallets">Wallets</string>
+    <string name="filter">Filter</string>
+    <string name="search_cryptocurrency">Search Cryptocurrency</string>
+    <string name="cryptocurrency">Cryptocurrency</string>
+    <string name="neft">NEFT</string>
 </resources>
