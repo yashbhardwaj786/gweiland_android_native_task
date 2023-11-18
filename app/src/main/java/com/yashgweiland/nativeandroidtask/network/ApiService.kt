@@ -10,15 +10,15 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 interface ApiService {
 
-    @GET("api?format=json")
-    suspend fun getJoke(): Response<ResultData>
+    @GET("v1/cryptocurrency/listings/latest")
+    suspend fun getLatestCryptoListing(@Query("limit") limit: Int, @Query("sort") sort: String, @Query("sort_dir") sortBy: String): Response<ResultData>
 
     companion object {
-        private const val API_ADDRESS = "https://geek-jokes.sameerkumar.website/"
         fun create(): ApiService {
             val interceptor = HttpLoggingInterceptor()
             val networkInterceptor = BaseRepository.ConnectVerifierInterceptor()

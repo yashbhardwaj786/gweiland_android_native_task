@@ -100,6 +100,7 @@
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topCurrencyContainer"
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:background="@drawable/rectangle_bg"
@@ -146,7 +147,7 @@
             android:layout_marginTop="@dimen/margin_3dp"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="13sp"
+            android:textSize="@dimen/text_size_13sp"
             app:layout_constraintLeft_toRightOf="@+id/bitcoinIcon"
             app:layout_constraintTop_toBottomOf="@+id/brandSlug"
             app:lineHeight="15sp" />
@@ -176,7 +177,7 @@
             android:layout_marginTop="@dimen/margin_3dp"
             android:text="+2.5%"
             android:fontFamily="@font/inter_bold"
-            android:textSize="13sp"
+            android:textSize="@dimen/text_size_13sp"
             app:lineHeight="21sp"
             android:textAlignment="center"
             android:textColor="@color/green"
@@ -193,6 +194,35 @@
         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/topCryptocurrencyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/topCurrencyContainer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/margin_15dp"
+        android:text="@string/top_cryptocurrency"
+        android:textColor="@color/black_0B"
+        android:fontFamily="@font/inter_medium"
+        android:textSize="@dimen/text_size_18sp"
+        app:lineHeight="21sp"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/viewAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/topCurrencyContainer"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:gravity="center"
+        android:text="@string/view_all"
+        android:textColor="@color/black_0B_50"
+        android:fontFamily="@font/inter_medium"
+        android:textSize="@dimen/text_size_13sp"
+        app:lineHeight="@dimen/text_size_15sp"
+        />
 
 
 

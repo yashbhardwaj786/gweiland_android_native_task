@@ -6,16 +6,13 @@ import com.yashgweiland.nativeandroidtask.data.repository.MainRepository
 import com.yashgweiland.nativeandroidtask.data.repository.SharedPrefRepository
 import timber.log.Timber
 
-const val JOKES_COUNT = 10
-
 class FetchJokeUseCase(
     private val mainRepository: MainRepository,
-    private val sharedPrefRepository: SharedPrefRepository
 ) {
-    suspend fun x(): Result<ArrayList<ResultData>> {
+    suspend fun getLatestCryptoListing( limit: Int, sort: String, sortBy: String): Result<ResultData> {
         var joke: ResultData? = null
         var exception: Exception? = null
-        when (val result = mainRepository.fetchJoke()) {
+        when (val result = mainRepository.getLatestCryptoListing(limit, sort, sortBy)) {
             is Result.Success -> {
                 joke = result.data
             }
@@ -27,23 +24,13 @@ class FetchJokeUseCase(
                 Timber.d("Something went wrong")
             }
         }
-
-        sharedPrefRepository.fetchJokesFromSharedPref().let {
-            joke?.let { joke ->
-                it.add(joke)
-            }
-            while (it.size > JOKES_COUNT) {
-                it.removeAt(0)
-            }
-            if (it.size > 0) {
-                sharedPrefRepository.saveJoke(it)
-                return Result.Success(it)
-            } else {
-                return exception?.let { ex ->
-                    Result.Error(ex)
-                } ?: run {
-                    Result.Error(Exception("No Result Found"))
-                }
+        return if(joke != null){
+            Result.Success(joke)
+        }else {
+            exception?.let { ex ->
+                Result.Error(ex)
+            } ?: run {
+                Result.Error(Exception("No Result Found"))
             }
         }
     }

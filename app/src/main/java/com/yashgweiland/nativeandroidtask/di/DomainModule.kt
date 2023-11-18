@@ -5,6 +5,6 @@ import org.koin.dsl.module
 
 val domainModule = module {
     single {
-        FetchJokeUseCase(get(), get())
+        FetchJokeUseCase(get())
     }
 }

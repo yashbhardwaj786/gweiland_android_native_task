@@ -8,11 +8,12 @@ import com.yashgweiland.nativeandroidtask.network.ApiService
 import java.lang.Exception
 
 class MainRepository(private val apiService: ApiService) : BaseRepository() {
-    suspend fun fetchJoke(): Result<ResultData>? {
+
+    suspend fun getLatestCryptoListing(limit: Int, sort: String, sortBy: String): Result<ResultData>? {
         return try {
             val response = safeApiCall(
                 call = {
-                    apiService.getJoke()
+                    apiService.getLatestCryptoListing(limit, sort, sortBy)
                 },
                 errorMessage = "Failed to fetch Joke"
             )
