@@ -20,6 +20,7 @@ object Versions {
     const val nav_version = "2.7.5"
     const val gson_conertor_version = "2.9.0"
     const val lottie_version = "3.7.0"
+    const val glide_version = "4.12.0"
 }
 
 object Dependencies {
@@ -57,5 +58,10 @@ object Dependencies {
 
     object Koin {
         const val koin = "io.insert-koin:koin-android:${Versions.koin}"
+    }
+
+    object Glide {
+        const val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
+        const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_version}"
     }
 }

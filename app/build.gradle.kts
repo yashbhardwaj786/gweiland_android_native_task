@@ -74,4 +74,6 @@ dependencies {
     implementation (Dependencies.timber)
     implementation(Dependencies.Retrofit.gson_convertor)
     implementation(Dependencies.lottie)
+    implementation(Dependencies.Glide.glide)
+    annotationProcessor(Dependencies.Glide.glide_compiler)
 }

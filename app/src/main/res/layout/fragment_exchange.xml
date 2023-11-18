@@ -9,6 +9,9 @@
 
         <import type="android.view.View"/>
         <variable
+            name="imageUrl"
+            type="String" />
+        <variable
             name="priceValue"
             type="String" />
         <variable
@@ -131,7 +134,10 @@
         android:id="@+id/bitcoinIcon"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        app:srcCompat="@drawable/icon__bitcoin"
+        tools:srcCompat="@drawable/icon__bitcoin"
+        app:errorDrawable="@{@drawable/icon__bitcoin}"
+        app:circularImageUrl="@{imageUrl}"
+        app:isDrawable="@{false}"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="@dimen/margin_20dp"

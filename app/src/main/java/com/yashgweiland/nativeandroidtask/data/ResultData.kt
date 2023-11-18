@@ -1,5 +1,7 @@
 package com.yashgweiland.nativeandroidtask.data
 
+import com.google.gson.annotations.SerializedName
+
 
 data class ResultData(
     val status: StatusResult? = null,
@@ -8,8 +10,10 @@ data class ResultData(
 
 data class StatusResult(
     val timestamp: String? = null,
-    val error_code: Int? = null,
-    val error_message: Int? = null,
+    @SerializedName("error_code")
+    val errorCode: Int? = null,
+    @SerializedName("error_message")
+    val errorMessage: String? = null,
 )
 
 data class CryptoDataResponse(
@@ -21,10 +25,12 @@ data class CryptoDataResponse(
 )
 
 data class CryptoDataQuotes(
-    val USD: CryptoDataQuotesUSD? = null,
+    @SerializedName("USD")
+    val usd: CryptoDataQuotesUSD? = null,
 )
 
 data class CryptoDataQuotesUSD(
     val price: Double? = null,
-    val percent_change_24h: Double? = null,
+    @SerializedName("percent_change_24h")
+    val percentChange: Double? = null,
 )

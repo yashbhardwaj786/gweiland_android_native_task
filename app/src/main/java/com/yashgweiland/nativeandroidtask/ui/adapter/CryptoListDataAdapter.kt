@@ -10,12 +10,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.yashgweiland.nativeandroidtask.R
 import com.yashgweiland.nativeandroidtask.data.CryptoDataResponse
+import com.yashgweiland.nativeandroidtask.data.MyData
 import com.yashgweiland.nativeandroidtask.databinding.LayoutCryptoItemBinding
 import com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel
 
 class CryptoListDataAdapter(
     private val mainViewModel: MainViewModel,
-    private var cryptoList: ArrayList<CryptoDataResponse>
+    private var cryptoList: ArrayList<CryptoDataResponse>,
+    private val hashMap: HashMap<Int, MyData>,
 ) : RecyclerView.Adapter<CryptoListDataAdapter.RecentDownloadViewHolder>()  {
     lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentDownloadViewHolder {
@@ -32,10 +34,10 @@ class CryptoListDataAdapter(
         val cryptoItemData = cryptoList[position]
         holder.binding.viewModel = mainViewModel
         holder.binding.data = cryptoItemData
-        cryptoItemData.quote?.USD?.price?.let { price->
+        cryptoItemData.quote?.usd?.price?.let { price->
             holder.binding.priceValue = String.format("%.2f", price)
         }
-        cryptoItemData.quote?.USD?.percent_change_24h?.let { changes->
+        cryptoItemData.quote?.usd?.percentChange?.let { changes->
             if(changes < 0){
                 holder.binding.image.setBackgroundResource(R.drawable.decrement)
                 holder.binding.changes.setTextColor(ContextCompat.getColor(context, R.color.red))
@@ -44,6 +46,11 @@ class CryptoListDataAdapter(
                 holder.binding.image.setBackgroundResource(R.drawable.increment)
                 holder.binding.changes.setTextColor(ContextCompat.getColor(context, R.color.green))
                 holder.binding.changeValue = "+"+String.format("%.2f", changes)
+            }
+        }
+        hashMap.forEach { (key, value) ->
+            if (key == cryptoItemData.id){
+                holder.binding.imageUrl = hashMap[key]?.logo
             }
         }
     }

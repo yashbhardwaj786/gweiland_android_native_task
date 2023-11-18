@@ -14,6 +14,10 @@
             type="String" />
 
         <variable
+            name="imageUrl"
+            type="String" />
+
+        <variable
             name="data"
             type="com.yashgweiland.nativeandroidtask.data.CryptoDataResponse" />
 
@@ -33,6 +37,9 @@
             android:layout_height="48dp"
             android:layout_marginStart="@dimen/margin_10dp"
             android:layout_marginTop="@dimen/margin_20dp"
+            app:errorDrawable="@{@drawable/icon__bitcoin}"
+            app:circularImageUrl="@{imageUrl}"
+            app:isDrawable="@{false}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/icon__bitcoin" />

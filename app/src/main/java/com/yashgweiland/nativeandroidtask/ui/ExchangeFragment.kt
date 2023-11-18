@@ -1,19 +1,29 @@
 package com.yashgweiland.nativeandroidtask.ui
 
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.google.gson.internal.LinkedTreeMap
+import com.google.gson.reflect.TypeToken
+import com.google.gson.stream.JsonReader
 import com.yashgweiland.nativeandroidtask.R
 import com.yashgweiland.nativeandroidtask.common.BaseFragment
 import com.yashgweiland.nativeandroidtask.common.BaseViewModel
 import com.yashgweiland.nativeandroidtask.data.CryptoDataResponse
+import com.yashgweiland.nativeandroidtask.data.CryptoInfoResponse
+import com.yashgweiland.nativeandroidtask.data.MyData
 import com.yashgweiland.nativeandroidtask.data.ResultData
 import com.yashgweiland.nativeandroidtask.data.model.FilterOptions
 import com.yashgweiland.nativeandroidtask.databinding.DialogFilerOptionsBinding
@@ -24,9 +34,14 @@ import com.yashgweiland.nativeandroidtask.ui.adapter.CryptoListDataAdapter
 import com.yashgweiland.nativeandroidtask.ui.adapter.FilterOptionsDataAdapter
 import com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel
 import com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel.Companion.FILTER_CLICK
+import com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel.Companion.ON_INFO_DATA_FETCH
 import com.yashgweiland.nativeandroidtask.utils.Constant.Companion.ON_FAILURE
 import com.yashgweiland.nativeandroidtask.utils.Constant.Companion.ON_STARTED
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.StringReader
+
+
+
 
 class ExchangeFragment : BaseFragment() {
 
@@ -43,6 +58,7 @@ class ExchangeFragment : BaseFragment() {
     private var dialog: BottomSheetDialog? = null
     private var recyclerViewList: RecyclerView? = null
     private val filterList = ArrayList<FilterOptions>()
+    private val myDataArrList = HashMap<Int, MyData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +68,7 @@ class ExchangeFragment : BaseFragment() {
     override fun getViewModel(): BaseViewModel {
         return mainViewModel
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onNotificationReceived(data: Notify) {
 
         when(data.identifier){
@@ -81,10 +98,10 @@ class ExchangeFragment : BaseFragment() {
                         }
                         binding.data = it[0]
                         mainViewModel.isShowView.set(true)
-                        it[0].quote?.USD?.price?.let { price->
+                        it[0].quote?.usd?.price?.let { price->
                             binding.priceValue = String.format("%.2f", price)
                         }
-                        it[0].quote?.USD?.percent_change_24h?.let { changes->
+                        it[0].quote?.usd?.percentChange?.let { changes->
                             if(changes < 0){
                                 binding.changes.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
                                 binding.changeValue = String.format("%.2f", changes)
@@ -96,7 +113,9 @@ class ExchangeFragment : BaseFragment() {
                         }
                         binding.isShowPadding = true
                         binding.cryptoList.visibility = View.VISIBLE
-                        initRecyclerView(partialList)
+                        val resultString = cryptoListFull.joinToString(separator = ",") { item->  item.slug.toString() }
+                        mainViewModel.getCryptoInfoApi(requireContext(), resultString)
+
                     }else {
                         binding.cryptoList.visibility = View.GONE
                     }
@@ -116,6 +135,7 @@ class ExchangeFragment : BaseFragment() {
                 binding.cryptoList.visibility = View.GONE
                 Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
             }
+
             MainViewModel.FILTER_OPTION_CLICK -> {
                 val options = data.arguments[0] as FilterOptions
                 val pos = data.arguments[1] as Int
@@ -129,12 +149,52 @@ class ExchangeFragment : BaseFragment() {
                 mainViewModel.getCryptoListApi(requireContext(), sort = options.value, sortBy = options.sort)
 
             }
+
             FILTER_CLICK -> {
                 if (filterList.isNotEmpty())
                     openChooserDialogBottomSheet(filterList)
             }
+
+            ON_INFO_DATA_FETCH -> {
+                val response = data.arguments[0] as CryptoInfoResponse
+                println(response.data!!::class.java.typeName)
+                var daata: LinkedTreeMap<*, *> = LinkedTreeMap<String, String>()
+                var daata1: LinkedTreeMap<*, *> = LinkedTreeMap<String, String>()
+                try {
+                    daata = response.data as LinkedTreeMap<*, *>
+
+                }catch (ex: Exception){
+                    println(ex.printStackTrace())
+                }
+
+
+                daata.forEach{ (key, value) ->
+                    daata1 = value as LinkedTreeMap<*, *>
+                    daata1.forEach { (key1, value1) ->
+                        var id = daata1["id"] as Double
+                        var name = daata1["name"] as String
+                        var symbol = daata1["symbol"] as String
+                        var logo = daata1["logo"] as String
+                        val myData = MyData(id, name, symbol, logo)
+                        myDataArrList[id.toInt()] = myData
+                        initRecyclerView(partialList)
+                    }
+                }
+                myDataArrList.forEach { (key, value) ->
+                    if (key == partialList[0].id){
+                        binding.imageUrl = myDataArrList[key]?.logo
+                    }
+                }
+            }
         }
 
+    }
+    fun <K, V> LinkedTreeMap<K, V>.toHashMap(): HashMap<K, V> {
+        val hashMap = HashMap<K, V>()
+        for ((key, value) in this) {
+            hashMap[key] = value
+        }
+        return hashMap
     }
     override fun setBindings() {
         binding.viewModel = mainViewModel
@@ -207,7 +267,7 @@ class ExchangeFragment : BaseFragment() {
             mLayoutManager = LinearLayoutManager(context)
             layoutManager = mLayoutManager
             adapter =
-                CryptoListDataAdapter(mainViewModel, cryptoList)
+                CryptoListDataAdapter(mainViewModel, cryptoList, myDataArrList)
         }
     }
 
@@ -244,5 +304,6 @@ class ExchangeFragment : BaseFragment() {
                 FilterOptionsDataAdapter(mainViewModel, filterList)
         }
     }
+
 
 }

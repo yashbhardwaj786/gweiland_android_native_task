@@ -8,13 +8,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.yashgweiland.nativeandroidtask.R
+import com.yashgweiland.nativeandroidtask.data.MyData
 import com.yashgweiland.nativeandroidtask.data.model.FilterOptions
 import com.yashgweiland.nativeandroidtask.databinding.LayoutFilterItemBinding
 import com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel
 
 class FilterOptionsDataAdapter(
     private val mainViewModel: MainViewModel,
-    var filterList: ArrayList<FilterOptions>
+    var filterList: ArrayList<FilterOptions>,
+
 ) : RecyclerView.Adapter<FilterOptionsDataAdapter.FilterOptionsViewHolder>()  {
     lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilterOptionsViewHolder {

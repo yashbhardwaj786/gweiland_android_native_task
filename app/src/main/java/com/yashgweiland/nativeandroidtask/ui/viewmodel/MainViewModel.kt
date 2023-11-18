@@ -52,6 +52,34 @@ class MainViewModel(
         }
     }
 
+    fun getCryptoInfoApi(context: Context, slug: String){
+        if (checkInternet()) {
+            viewModelScope.launch {
+                try {
+                    val response = fetchJokeUseCase.getCryptoInfo(slug)
+                    response.let {
+                        when(it) {
+                            is Result.Success -> {
+                                notifier.notify(Notify(ON_INFO_DATA_FETCH, it.data))
+                                return@launch
+                            }
+                            is Result.Error -> {
+                                it.exception.printStackTrace()
+                                notifier.notify(Notify(Constant.ON_FAILURE, it.exception.localizedMessage))
+                            }
+                        }
+                    }
+                }catch (ex: Exception) {
+                    hideProgress()
+                    ex.printStackTrace()
+                    notifier.notify(Notify(Constant.ON_FAILURE, ex.localizedMessage))
+                }
+            }
+        } else {
+            notifier.notify(Notify(Constant.ON_FAILURE, Constant.INTERNET_ISSUE_DESCRIPTION))
+        }
+    }
+
     fun onViewClick(){
         notifier.notify(Notify(VIEW_ALL_CLICK, ""))
     }
@@ -66,5 +94,6 @@ class MainViewModel(
         const val VIEW_ALL_CLICK = "VIEW_ALL_CLICK"
         const val FILTER_CLICK = "FILTER_CLICK"
         const val FILTER_OPTION_CLICK = "FILTER_OPTION_CLICK"
+        const val ON_INFO_DATA_FETCH = "ON_INFO_DATA_FETCH"
     }
 }

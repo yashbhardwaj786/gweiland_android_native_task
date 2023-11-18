@@ -5,6 +5,7 @@ import com.yashgweiland.nativeandroidtask.data.repository.BaseRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import com.yashgweiland.nativeandroidtask.BuildConfig
+import com.yashgweiland.nativeandroidtask.data.CryptoInfoResponse
 import okhttp3.Request
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -17,6 +18,9 @@ interface ApiService {
 
     @GET("v1/cryptocurrency/listings/latest")
     suspend fun getLatestCryptoListing(@Query("limit") limit: Int, @Query("sort") sort: String, @Query("sort_dir") sortBy: String): Response<ResultData>
+
+    @GET("v2/cryptocurrency/info")
+    suspend fun getCryptoCurrencyInfo(@Query("slug") slug: String): Response<CryptoInfoResponse>
 
     companion object {
         fun create(): ApiService {
