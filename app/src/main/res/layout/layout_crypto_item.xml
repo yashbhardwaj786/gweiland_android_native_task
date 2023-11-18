@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="priceValue"
+            type="String" />
+
+        <variable
+            name="changeValue"
+            type="String" />
+
+        <variable
+            name="data"
+            type="com.yashgweiland.nativeandroidtask.data.CryptoDataResponse" />
+
+        <variable
+            name="viewModel"
+            type="com.yashgweiland.nativeandroidtask.ui.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_15dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bitcoinIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon__bitcoin" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/brandSlug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_20dp"
+            android:fontFamily="@font/inter_bold"
+            android:textAlignment="center"
+            android:textColor="@color/black_90"
+            android:textSize="@dimen/text_size_18sp"
+            app:layout_constraintLeft_toRightOf="@+id/bitcoinIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lineHeight="21sp"
+            tools:text="BTC"
+            android:text="@{data.symbol}"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/brandName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_3dp"
+            android:fontFamily="@font/inter_medium"
+            android:textAlignment="center"
+            android:textColor="@color/black_50"
+            android:textSize="@dimen/text_size_13sp"
+            app:layout_constraintLeft_toRightOf="@+id/bitcoinIcon"
+            app:layout_constraintTop_toBottomOf="@+id/brandSlug"
+            app:lineHeight="15sp"
+            tools:text="Bitcoin"
+            android:text="@{data.name}" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            app:layout_constraintLeft_toRightOf="@id/brandSlug"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/increment" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20dp"
+            android:layout_marginEnd="@dimen/margin_10dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@{priceValue}"
+            android:textAlignment="center"
+            android:textColor="@color/black_90"
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lineHeight="21sp"
+            tools:text="$55,000 USD" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/changes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_3dp"
+            android:layout_marginEnd="@dimen/margin_10dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@{changeValue + `%`}"
+            android:textAlignment="center"
+            android:textColor="@color/green"
+            android:textSize="@dimen/text_size_13sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/price"
+            app:lineHeight="21sp"
+            tools:text="+90%" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

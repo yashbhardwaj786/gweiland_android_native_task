@@ -18,7 +18,7 @@
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingHorizontal="26dp"
     tools:context=".ui.ExchangeFragment">
 
@@ -230,12 +230,28 @@
         android:layout_marginTop="@dimen/margin_16dp"
         android:gravity="center"
         android:text="@string/view_all"
+        android:onClick="@{()->viewModel.onViewClick()}"
         android:textColor="@color/black_0B_50"
         android:fontFamily="@font/inter_medium"
         android:textSize="@dimen/text_size_13sp"
         app:lineHeight="@dimen/text_size_15sp"
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cryptoList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_15dp"
+        app:layout_constraintVertical_weight="1"
+        android:paddingBottom="300dp"
+        android:fitsSystemWindows="true"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@+id/topCryptocurrencyText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:itemCount="5"
+        tools:listitem="@layout/layout_crypto_item"
+        tools:visibility="visible" />
 
 
 

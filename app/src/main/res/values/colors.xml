@@ -3,7 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_40">#66FFFFFF</color>
+    <color name="black_50">#80000000</color>
     <color name="black_40">#66000000</color>
+    <color name="black_90">#E6000000</color>
     <color name="transparent">#00000000</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -17,6 +19,7 @@
     <color name="white_f3">#F3F3F3</color>
     <color name="green_10">#1A00CE08</color>
     <color name="green">#00CE08</color>
+    <color name="red">#FF3D00</color>
 
     <color name="bottom_menu_selected_color">@color/white</color>
     <color name="bottom_menu_unselected_color">@color/teal_700</color>

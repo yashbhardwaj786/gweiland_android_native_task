@@ -49,7 +49,12 @@ class MainViewModel(
             notifier.notify(Notify(Constant.ON_FAILURE, Constant.INTERNET_ISSUE_DESCRIPTION))
         }
     }
+
+    fun onViewClick(){
+        notifier.notify(Notify(VIEW_ALL_CLICK, ""))
+    }
     companion object {
         const val ON_LISTING_DATA_FETCH = "ON_LISTING_DATA_FETCH"
+        const val VIEW_ALL_CLICK = "VIEW_ALL_CLICK"
     }
 }
