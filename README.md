@@ -1,4 +1,4 @@
-# gweiland_android_native_task
+# Crypto UI
 
 A sample app for a crypto currency market place
 The following technology used in application
