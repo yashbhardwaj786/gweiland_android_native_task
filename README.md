@@ -24,17 +24,3 @@ The following technology used in application
     B. Price - High to Low
     C. Volume-24 - Low to High
     D. Volume-24 - High to Low
-
-# Requirements Action
-1. Replicate the entire Main screen design as shown in figma. --> Done 
-2. Display the top 20 cryptocurrencies with their price in USD as shown in the design. --> Done
-3. To fetch the cryptocurrency data use API _getV1CryptocurrencyListingsLatest_. --> Done
-4. To get the logo use Metadata V2 of Coinmarketcap Api _MetaDataV2_. --> Done
-5. Sort the cryptocurrencies by cmc_rank or Marketcap by default. --> Done
-   
-# Bonus Point
-1. Integrate the ‘Filter’ feature on right top (from the design). Give options to sort the cryptocurrencies by **price, volume_24h** --> Done
-
-
-![Screenshot_20231205-142459.png](..%2F..%2FDesktop%2Funtitled%20folder%2FScreenshot_20231205-142459.png)
-![Screenshot_20231205-142522.png](..%2F..%2FDesktop%2Funtitled%20folder%2FScreenshot_20231205-142522.png)
