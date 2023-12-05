@@ -1,6 +1,6 @@
 # gweiland_android_native_task
 
-This project purpose is for Gweiland Android Assignment Task
+A sample app for a crypto currency market place
 The following technology used in application
 1. Android with Kotlin
 2. MVVM clean Architecture
@@ -36,3 +36,5 @@ The following technology used in application
 1. Integrate the ‘Filter’ feature on right top (from the design). Give options to sort the cryptocurrencies by **price, volume_24h** --> Done
 
 
+![Screenshot_20231205-142459.png](..%2F..%2FDesktop%2Funtitled%20folder%2FScreenshot_20231205-142459.png)
+![Screenshot_20231205-142522.png](..%2F..%2FDesktop%2Funtitled%20folder%2FScreenshot_20231205-142522.png)
