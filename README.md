@@ -24,3 +24,9 @@ The following technology used in application
     B. Price - High to Low
     C. Volume-24 - Low to High
     D. Volume-24 - High to Low
+
+![Screenshot_20231205-142459](https://github.com/KaulSalil/TT_CryptoMarket/assets/8721680/f6bf3256-ea0f-487c-a7b9-546d0c72372c)
+
+![Screenshot_20231205-142522](https://github.com/KaulSalil/TT_CryptoMarket/assets/8721680/2869a6bd-4727-4fda-9c69-fc051a39e43b)
+
+
