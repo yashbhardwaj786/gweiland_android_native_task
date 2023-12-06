@@ -1,6 +1,6 @@
-# gweiland_android_native_task
+# Crypto UI
 
-This project purpose is for Gweiland Android Assignment Task
+A sample app for a crypto currency market place
 The following technology used in application
 1. Android with Kotlin
 2. MVVM clean Architecture
@@ -25,14 +25,10 @@ The following technology used in application
     C. Volume-24 - Low to High
     D. Volume-24 - High to Low
 
-# Requirements Action
-1. Replicate the entire Main screen design as shown in figma. --> Done 
-2. Display the top 20 cryptocurrencies with their price in USD as shown in the design. --> Done
-3. To fetch the cryptocurrency data use API _getV1CryptocurrencyListingsLatest_. --> Done
-4. To get the logo use Metadata V2 of Coinmarketcap Api _MetaDataV2_. --> Done
-5. Sort the cryptocurrencies by cmc_rank or Marketcap by default. --> Done
-   
-# Bonus Point
-1. Integrate the ‘Filter’ feature on right top (from the design). Give options to sort the cryptocurrencies by **price, volume_24h** --> Done
+# Main Screen
+![Screenshot_20231205-142459](https://github.com/KaulSalil/TT_CryptoMarket/assets/8721680/f6bf3256-ea0f-487c-a7b9-546d0c72372c)
+
+# Filter BottomSheet
+![Screenshot_20231205-142522](https://github.com/KaulSalil/TT_CryptoMarket/assets/8721680/2869a6bd-4727-4fda-9c69-fc051a39e43b)
 
 
